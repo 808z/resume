@@ -1,0 +1,285 @@
+\documentclass[letterpaper,10pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% BEGIN_FILE: mteck.sty
+%% NOTE: Everything between here and END_FILE can
+%% be relocated to "mteck.sty" and then included with:
+%\usepackage{mteck}
+
+% Dependencies
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+
+% Sans-Serif
+%\usepackage[sfdefault]{FiraSans}
+\usepackage[sfdefault]{roboto}
+%\usepackage[sfdefault]{noto-sans}
+%\usepackage[default]{sourcesanspro}
+
+% Serif
+%\usepackage{CormorantGaramond}
+%\usepackage{charter}
+
+% Colors
+% Use with \color{Name}
+% Can wrap entire heading with {\color{accent} [...] }
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{000000}
+\definecolor{accentText}{HTML}{000000}
+\definecolor{accentLine}{HTML}{000000}
+
+% Misc. Options
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+% Adjust Margins
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+% ATS Readability
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+%-----------------%
+% Custom Commands %
+%-----------------%
+
+% Centered title along with subtitle between HR
+% Usage: \documentTitle{Name}{Details}
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{10pt}
+    {\color{accentLine} \hrule}
+    \vspace{2pt}
+    %{\footnotesize\color{accentTitle} #2}
+    \footnotesize{#2}
+    \vspace{2pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+% Create a footer with correct padding
+% Usage: \documentFooter{\thepage of X}
+\newcommand{\documentFooter}[1]{
+  \setlength{\footskip}{10.25pt}
+  \fancyfoot[C]{\footnotesize #1}
+}
+
+% Simple wrapper to set up page numbering
+% Usage: \numberedPages
+% WARNING: Must run pdflatex twice!
+\newcommand{\numberedPages}{
+  \documentFooter{\thepage/\pageref{LastPage}}
+}
+
+% Section heading with horizontal rule
+% Usage: \section{Title}
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+
+% Section heading with separator and content on same line
+% Usage: \tinysection{Title}
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} |}}
+}
+
+% Indented line with arguments left/right aligned in document
+% Usage: \heading{Left}{Right}
+\newcommand{\heading}[2]{
+  \hspace{10pt}#1\hfill#2\\
+}
+
+% Adds \textbf to \heading
+\newcommand{\headingBf}[2]{
+  \heading{\textbf{#1}}{\textbf{#2}}
+}
+
+% Adds \textit to \heading
+\newcommand{\headingIt}[2]{
+  \heading{\textit{#1}}{\textit{#2}}
+}
+
+% Template for itemized lists
+% Usage: \begin{resume_list} [items] \end{resume_list}
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+  %\vspace{-2pt}
+}
+
+% Formats an item to use as an itemized title
+% Usage: \itemTitle{Title}
+\newcommand{\itemTitle}[1]{
+  \item[] \underline{#1}\vspace{4pt}
+}
+
+% Bullets used in itemized lists
+\renewcommand\labelitemi{--}
+
+%% END_FILE: mteck.sty
+%%%%%%%%%%%%%%%%%%%%%%
+
+%===================%
+% Jeremy's Resume %
+%===================%
+\begin{document}
+
+  %---------%
+  % Heading %
+  %---------%
+
+  \documentTitle{Jeremy Galarza}{
+    \href{tel:9156037573}{
+      \raisebox{-0.05\height} \faPhone\ 915-603-7573} ~ | ~
+    \href{mailto:jgswe@icloud.com}{
+      \raisebox{-0.15\height} \faEnvelope\ jgswe@icloud.com} ~ | ~
+    \href{www.linkedin.com/in/jeremygalarza}{
+      \raisebox{-0.15\height} \faLinkedin\ linkedin.com/in/jeremygalarza} 
+    %\href{www.github.com/808z}{
+      %\raisebox{-0.15\height} \faGithub\ github.com/808z}
+  }
+
+  %-----------%
+  % Education %
+  %-----------%
+
+\vspace{0pt}
+  \section{Education}
+  \headingBf{The University of Texas at El Paso \hspace{7.5cm}Expected Graduation Date: Dec. 2026}{}
+  \headingIt{B.S in Computer Science, Concentration in Software Engineering $|$ Minor in Mathematics \hspace{7.9cm}}{}
+  \vspace{3pt}
+  \headingIt{\textbf{Relevant Courses}: Elem. Data Structures, Digital Systems Design, Intro to Computer Science
+  \\\hspace{0.3cm}Discrete Mathematics, Matrix Algebra, Probability and Statistics}{}
+  \vspace{-2pt}
+  
+  %--------%
+  % Skills %
+  %--------%
+\vspace{0pt}
+  \section{Technical Skills}
+    \headingIt{\textbf{Proficient Languages}: Java, Python, HTML/CSS, JavaScript, Verilog HDL, Markup Languages, LaTeX}{}
+    \vspace{1pt}
+    \headingIt{\textbf{Learning Languages }: Swift, C, C++, SQL}{}
+    \vspace{1pt}
+    \headingIt{\textbf{Technologies}: Artificial Intelligence, Github, Git, Emacs, Django, Arch Linux, QEMU}{}
+    \vspace{2pt}
+    \headingIt{\textbf{Certifications}: Microsoft Office (MOS), Adobe Creative Suite }{}
+  
+  %------------%
+  % Experience %
+  %------------%
+
+\vspace{0pt}
+  \section{Experience}
+
+\headingBf{\large{Tech Frontier}}{April - May 2025}
+\headingIt{AI Developer Pathway Alumni}{}
+\begin{resume_list}
+  \item Acquired a strong understanding of fundamental Artificial Intelligence concepts such as \textbf{neural networks}, \textbf{machine learning}, and \textbf{natural language processing}.
+  \vspace{1pt}
+  \item Leveraged several capabilities of Artificial Intelligence in Python, including \textbf{TensorFlow}, \textbf{Pytorch}, and \textbf{Pomegranate}.
+  \vspace{1pt}
+  \item Independently developing an iOS application that will demonstrate the \textbf{real world utility} of these concepts to provide \textbf{tangible user benefits}.
+  \vspace{2pt}
+\end{resume_list}
+
+\headingBf{\large{STTE AI Hackathon}}{April 2025}
+\begin{resume_list}
+  \item Developed an AI-powered product for the education category in collaboration with a team of four. (SchoolFlow)
+  \vspace{1pt}
+  \item Applied skills in data analysis, frontend development, AI tools, and implemented an SQL database backend.
+  \vspace{-2pt}
+\end{resume_list}
+
+  %------------%
+  %  Projects  %
+  %------------%
+
+\vspace{0pt}
+\section{\large{Projects}}
+
+\vspace{1pt}
+\headingBf{\large{Summit - AI Outdoors Companion}}{Ongoing}
+\begin{resume_list}
+  \vspace{1pt}
+    \item I'm currently developing an iOS app that leverages \textbf{on-device AI models} to provide the user with real-time guidance during outdoor activities.
+    \vspace{1pt}
+    \item Utilizes \textbf{MLC-LLM} in tandem with \textbf{Gemma} for real-time speech recognition to provide user assistance.
+    \vspace{1pt}
+    \item Integrates the \textbf{MediaPipe framework} to provide contextually-aware assistance.
+\end{resume_list}
+
+\vspace{0pt}
+\headingBf{\large{SchoolFlow}}{April 2025}
+\begin{resume_list}
+  \vspace{2pt}
+    \item Designed an AI-powered platform for school districts to gain actionable insights by correlating real financial data with academic success metrics, visualized through graphs and dashboards.
+    \vspace{1pt}
+    \item Implemented the website frontend and developed an AI model trained on the district's dataset.
+    \item Trained an AI model on the school district's dataset, which was used in conjunction with a team-built SQL database to produce the platform's analytical outputs.
+\end{resume_list}
+
+\vspace{0pt}
+\headingBf{\large{Bayesian Network Model}}{April 2025}
+\begin{resume_list}
+  \vspace{2pt}
+    \item Used a \textbf{Pomegranate} and \textbf{Pytorch} to create a model that calculates the exact probabilities of different real life events based on user input.
+    \vspace{1pt}
+    \item Modified the \textbf{knowledge base} of the model to simulate different scenarios that the average person would go through.
+\end{resume_list}
+
+\vspace{0pt}
+\headingBf{\large{Nim Game Using Machine Learning}}{April 2025}
+\begin{resume_list}
+  \item Worked on a game in Python that utilized \textbf{machine learning}.
+  \vspace{1pt}
+  \item Utilized a \textbf{Q-learning algorithm} for the AI opponent which learned based on a specified amount of games, as well as games it has played with the user.
+  \vspace{1pt}
+  \item Generates a visual output of the game's results using the \textbf{PIL} library.
+\end{resume_list}
+
+\vspace{0pt}
+\headingBf{\large{HAWK RTL Design for Pedestrian Crosswalk}}{Nov. 2024}
+\begin{resume_list}
+  \item Recreated a \textbf{High-intensity Activated Crosswalk} design in \textbf{Xillinx Vivado} from UTEP's specifications.
+  \vspace{1pt}
+  \item Implemented this design using \textbf{Verilog HDL} as an \textbf{Algorithmic State Machine}.
+\end{resume_list}
+
+\vspace{0pt}
+\headingBf{\large{Wordle}}{Nov. 2023}
+\begin{resume_list}
+  \item Recreated the popular game New York Times game Wordle using \textbf{Java}.
+  \vspace{1pt}
+  \item Utilized \textbf{file reading} methods to customize word data.
+\end{resume_list}
+
+\end{document}

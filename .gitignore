@@ -1,0 +1,9 @@
+# macOS #
+.DS_Store
+
+# LaTeX #
+Resume.aux
+Resume.fls
+Resume.fdb_latexmk
+Resume.log
+Resume.synctex.gz
